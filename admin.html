@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Acceso Admin | VisaGlobal</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Font Awesome -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+
+<!-- CSS -->
+<link rel="stylesheet" href="estilos.css">
+
+<style>
+body {
+    background: #0d1b2a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    font-family: Montserrat, sans-serif;
+}
+
+.auth-box {
+    background: white;
+    width: 420px;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.auth-title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 700;
+    color: #0d1b2a;
+}
+
+.toggle-link {
+    text-align: center;
+    margin-top: 15px;
+    cursor: pointer;
+    color: #0d1b2a;
+    font-weight: 600;
+}
+
+.btn-auth {
+    background: #0d1b2a;
+    color: white;
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    transition: 0.3s;
+}
+
+.btn-auth:hover {
+    background: #ffcc00;
+    color: #0d1b2a;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="auth-box">
+
+    <h3 class="auth-title">
+        <i class="fa-solid fa-shield-halved"></i>
+        Acceso Administrador
+    </h3>
+
+    <!-- LOGIN -->
+    <form id="loginForm">
+
+        <div class="mb-3">
+            <label>Correo</label>
+            <input type="email" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label>Contraseña</label>
+            <input type="password" class="form-control" required>
+        </div>
+
+        <button class="btn-auth" type="submit">
+            Iniciar sesión
+        </button>
+
+    </form>
+
+    <!-- REGISTRO -->
+    <form id="loginForm" action="login.php" method="POST">
+
+    <div class="mb-3">
+        <label>Correo</label>
+        <input type="email"
+               name="email"
+               class="form-control"
+               required>
+    </div>
+
+    <div class="mb-3">
+        <label>Contraseña</label>
+        <input type="password"
+               name="password"
+               class="form-control"
+               required>
+    </div>
+
+    <button class="btn-auth" type="submit">
+        Iniciar sesión
+    </button>
+
+</form>
+
+    </form>
+
+    <div class="toggle-link" onclick="toggleForms()">
+        Cambiar a registro / login
+    </div>
+
+</div>
+
+<script>
+function toggleForms(){
+    const login = document.getElementById("loginForm");
+    const register = document.getElementById("registerForm");
+
+    if(login.style.display === "none"){
+        login.style.display = "block";
+        register.style.display = "none";
+    } else {
+        login.style.display = "none";
+        register.style.display = "block";
+    }
+}
+
+// LOGIN SIMPLE (demo)
+document.getElementById("loginForm").addEventListener("submit", function(e){
+    e.preventDefault();
+
+    const email = this.querySelector('input[type="email"]').value;
+    const pass = this.querySelector('input[type="password"]').value;
+
+    if(email === "admin@visa.com" && pass === "1234"){
+        alert("Acceso correcto");
+        window.location.href = "admin-panel.html";
+    } else {
+        alert("Credenciales incorrectas");
+    }
+});
+
+// REGISTRO SIMPLE (demo)
+document.getElementById("registerForm").addEventListener("submit", function(e){
+    e.preventDefault();
+
+    const code = this.querySelector('input[placeholder="Código de administrador"]').value;
+
+    if(code === "CES-ADMIN-2026"){
+        alert("Registro correcto como admin");
+        window.location.href = "admin-panel.html";
+    } else {
+        alert("Código de administrador incorrecto");
+    }
+});
+</script>
+
+</body>
+</html>
